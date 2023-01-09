@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<head>
+<style>
+	*{
+		box-sizing: border-box;
+		font-family: Arial;
+	}
+	body{
+		background-color: #C4FCFE;
+	}
+	.container{
+		width: 450px;
+		height: 450px;
+		margin: 50px;
+		margin-left:200px;
+	}
+	.container .gameCell{
+		border: 1px solid;
+		font-size: 100px;
+		text-align: center;
+		padding: 15px;
+		float: left;
+		width: 150px;
+		height: 150px;
+		cursor: pointer;
+	}
+	#header{
+		border: 5px dashed;
+		padding: 15px;
+		width: 410px;
+		background-color: #1D64DF;
+		margin-left:230px;
+		text-align: center;
+		font-size: 150%;
+	}
+	#playerIndicator{
+		margin-left: 300px;
+		font-size: 40px;
+		font-weight: bold;
+	}
+	#resetMessage{
+		margin-left: 180px;
+		font-size: 40px;
+		font-weight: bold;
+	}
+</style>
+
+<script>
+	var player = "X";
+	var gameOver = false;//determines when game is over so no more boxes can be clicked when game is over. 
+	/*
+	This changes a box that is clicked on to either and X or and O depending on who's turn it is. 
+	*/
+	function boxPick(box){
+		if (!gameOver){
+			if (box.innerHTML == "" && box.innerHTML !== "X" && box.innerHTML!== "O"){
+			box.innerHTML = player; 
+			if(player == "X"){
+				box.style.color = "red";
+			}
+			else{
+				box.style.color = "blue";
+			}
+			changePlayer();
+			if(gameOver == false){playerTrack()};
+			checkWin(box); // checks if someone has one yet. 
+			}
+		}
+	}
+	/*
+	Changes the marker for the current player. 
+	*/
+	function changePlayer(){
+		if(player == "X"){
+				player = "O";
+			}
+			else{
+				player = "X"
+			}
+	}
+	/*
+	Changes indicator showing which players turn it is. 
+	*/
+	function playerTrack(){
+		var Indicator = document.getElementById("playerIndicator");
+		if(player == "X"){
+				Indicator.innerHTML = "Player X turn.";
+			}
+			else{
+				Indicator.innerHTML = "Player O turn.";
+			}
+	}
+	
+	/*
+	Checks game for a winnier. 
+	*/
+	function checkWin(){
+	var box1 = document.getElementById("box 1");
+	var box2 = document.getElementById("box 2");
+	var box3 = document.getElementById("box 3");
+	var box4 = document.getElementById("box 4");
+	var box5 = document.getElementById("box 5");
+	var box6 = document.getElementById("box 6");
+	var box7 = document.getElementById("box 7");
+	var box8 = document.getElementById("box 8");
+	var box9 = document.getElementById("box 9");
+	var status = document.getElementById("playerIndicator");
+	var reset = document.getElementById("resetMessage");
+		// every combonation for a win. 
+		if(box1.innerHTML !== "" && box1.innerHTML == box2.innerHTML && box1.innerHTML == box3.innerHTML){
+			status.innerHTML = "Player " + box1.innerHTML + " Wins!";
+			status.style.color = "#1ECD35";
+			box1.style.backgroundColor = "#50EF60"
+			box2.style.backgroundColor = "#50EF60"
+			box3.style.backgroundColor = "#50EF60"
+			reset.innerHTML = "Reset page to reset game.";
+			gameOver = true;
+		}
+		else if(box4.innerHTML !== "" && box4.innerHTML == box5.innerHTML && box4.innerHTML == box6.innerHTML){
+			status.innerHTML = "Player " + box4.innerHTML + " Wins!";
+			status.style.color = "#1ECD35";
+			box4.style.backgroundColor = "#50EF60"
+			box5.style.backgroundColor = "#50EF60"
+			box6.style.backgroundColor = "#50EF60"
+			reset.innerHTML = "Reset page to reset game.";
+			gameOver = true;
+		}
+		else if(box7.innerHTML !== "" && box7.innerHTML == box8.innerHTML && box7.innerHTML == box9.innerHTML){
+			status.innerHTML = "Player " + box7.innerHTML + " Wins!";
+			status.style.color = "#1ECD35";
+			box7.style.backgroundColor = "#50EF60"
+			box8.style.backgroundColor = "#50EF60"
+			box9.style.backgroundColor = "#50EF60"
+			reset.innerHTML = "Reset page to reset game.";
+			gameOver = true;
+		}
+		else if(box1.innerHTML !== "" && box1.innerHTML == box4.innerHTML && box1.innerHTML == box7.innerHTML){
+			status.innerHTML = "Player " + box1.innerHTML + " Wins!";
+			status.style.color = "#1ECD35";
+			box1.style.backgroundColor = "#50EF60"
+			box4.style.backgroundColor = "#50EF60"
+			box7.style.backgroundColor = "#50EF60"
+			reset.innerHTML = "Reset page to reset game.";
+			gameOver = true;
+		}
+		else if(box2.innerHTML !== "" && box2.innerHTML == box5.innerHTML && box2.innerHTML == box8.innerHTML){
+			status.innerHTML = "Player " + box2.innerHTML + " Wins!";
+			status.style.color = "#1ECD35";
+			box2.style.backgroundColor = "#50EF60"
+			box5.style.backgroundColor = "#50EF60"
+			box8.style.backgroundColor = "#50EF60"
+			reset.innerHTML = "Reset page to reset game.";
+			gameOver = true;
+		}
+		else if(box3.innerHTML !== "" && box3.innerHTML == box6.innerHTML && box3.innerHTML == box9.innerHTML){
+			status.innerHTML = "Player " + box3.innerHTML + " Wins!";
+			status.style.color = "#1ECD35";
+			box3.style.backgroundColor = "#50EF60"
+			box6.style.backgroundColor = "#50EF60"
+			box9.style.backgroundColor = "#50EF60"
+			reset.innerHTML = "Reset page to reset game.";
+			gameOver = true;
+		}
+		else if(box1.innerHTML !== "" && box1.innerHTML == box5.innerHTML && box1.innerHTML == box9.innerHTML){
+			status.innerHTML = "Player " + box1.innerHTML + " Wins!";
+			status.style.color = "#1ECD35";
+			box1.style.backgroundColor = "#50EF60"
+			box5.style.backgroundColor = "#50EF60"
+			box9.style.backgroundColor = "#50EF60"
+			reset.innerHTML = "Reset page to reset game.";
+			gameOver = true;
+		}
+		else if(box3.innerHTML !== "" && box3.innerHTML == box5.innerHTML && box3.innerHTML == box7.innerHTML){
+			status.innerHTML = "Player " + box3.innerHTML + " Wins!";
+			status.style.color = "#1ECD35";
+			box3.style.backgroundColor = "#50EF60"
+			box5.style.backgroundColor = "#50EF60"
+			box7.style.backgroundColor = "#50EF60"
+			reset.innerHTML = "Reset page to reset game.";
+			gameOver = true;
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="header"><h1>TICK TACK TOE</h1></div>
+	<br />
+	<span id="playerIndicator">Player X turn.</span>
+	<div class="container"id="gameboard">
+		<div class="gameCell" id="box 1" onclick="boxPick(this)"></div>
+		<div class="gameCell" id="box 2" onclick="boxPick(this)"></div>
+		<div class="gameCell" id="box 3" onclick="boxPick(this)"></div>
+		<div class="gameCell" id="box 4" onclick="boxPick(this)"></div>
+		<div class="gameCell" id="box 5" onclick="boxPick(this)"></div>
+		<div class="gameCell" id="box 6" onclick="boxPick(this)"></div>
+		<div class="gameCell" id="box 7" onclick="boxPick(this)"></div>
+		<div class="gameCell" id="box 8" onclick="boxPick(this)"></div>
+		<div class="gameCell" id="box 9" onclick="boxPick(this)"></div>
+	</div>
+	<span id="resetMessage"> </span>
+</body>
